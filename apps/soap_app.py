@@ -14,10 +14,10 @@ logger = logging.getLogger('spyne')
 
 class MinWage(ComplexModel):
     DateWage = Date(doc='Дата на яку потрібна мінімальна заробітна плата')
-    WageMonth = Decimal(doc='')
-    WageHour = Decimal(doc='')
-    WageDateBegin = Date(doc='')
-    WageDateEnd = Date(doc='')
+    WageMonth = Decimal(doc='Мінімальна заробітна плата')
+    WageHour = Decimal(doc='Мінімальна погодина заробітна плата')
+    WageDateBegin = Date(doc='Дата впровадження')
+    WageDateEnd = Date(doc='Дата закінчення')
 
 
 if path.isfile('./data/Wage.json'):
