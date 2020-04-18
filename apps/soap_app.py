@@ -1,6 +1,4 @@
-import json
 import logging
-from os import path
 
 from spyne import String, Date, Decimal
 from spyne import rpc, Application, ServiceBase, ComplexModel
@@ -13,28 +11,13 @@ logger = logging.getLogger('spyne')
 
 
 class MinWage(ComplexModel):
+    __namespace__ = 'Directory.Minimum.Wage'
+
     DateWage = Date(doc='Дата на яку потрібна мінімальна заробітна плата')
     WageMonth = Decimal(doc='Мінімальна заробітна плата')
     WageHour = Decimal(doc='Мінімальна погодина заробітна плата')
     WageDateBegin = Date(doc='Дата впровадження')
     WageDateEnd = Date(doc='Дата закінчення')
-
-
-if path.isfile('./data/Wage.json'):
-    Wage = []
-    with open('./data/Wage.json', 'r', encoding='utf-8') as f:
-        w = json.load(f)
-    for l in w:
-        Wage.append(
-            {
-                'start': ctod(l.get('start')),
-                'end': ctod(l.get('end')),
-                'wage': l.get('wage'),
-                'wage_h': l.get('wage_h'),
-            }
-        )
-else:
-    Wage = []
 
 
 class Get(ServiceBase):
@@ -45,6 +28,7 @@ class Get(ServiceBase):
         ),
         _returns=MinWage)
     def GetMinWage(ctx, DateWage):
+        Wage = read_dict()
         mw = MinWage()
         mw.DateWage = DateWage
         for w in Wage:
@@ -55,11 +39,6 @@ class Get(ServiceBase):
                 mw.WageDateBegin = w.get('start')
                 mw.WageDateEnd = w.get('end')
         return mw
-
-
-Get.event_manager.add_listener(
-    'method_return_string', on_method_return_string
-)
 
 
 class Put(ServiceBase):
@@ -80,13 +59,14 @@ class Put(ServiceBase):
         if header.get('token') != ctx.udc.config.get('TOKEN'):
             return 'Вам не можно вносити зміни!!!'
 
+        Wage = read_dict()
         wage = float(str(wage))
         wage_h = float(str(wage_h))
         for w in Wage:
             if w.get('end'):
                 continue
             if w.get('start') > start:
-                return "Дата не может быть меньше"
+                return "Дата початку не може бути меньш ніж %s" % w.get('start')
             w.update({'end': start - datetime.timedelta(1)})
 
         Wage.append({
@@ -99,11 +79,6 @@ class Put(ServiceBase):
                       indent=4, default=dtoc)
 
         return "OK"
-
-
-Put.event_manager.add_listener(
-    'method_return_string', on_method_return_string
-)
 
 
 def soap_put(flask_app):
@@ -120,6 +95,9 @@ def soap_put(flask_app):
 
     Sput.event_manager.add_listener(
         'method_call', _flask_config_context
+    )
+    Put.event_manager.add_listener(
+        'method_return_string', on_method_return_string
     )
 
     return Sput
@@ -140,7 +118,9 @@ def soap_get(flask_app):
     Sget.event_manager.add_listener(
         'method_call', _flask_config_context
     )
-
+    Get.event_manager.add_listener(
+        'method_return_string', on_method_return_string
+    )
     return Sget
 
 

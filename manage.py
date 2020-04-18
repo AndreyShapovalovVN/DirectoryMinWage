@@ -27,6 +27,7 @@ soap_hendler = logging.FileHandler('./logs/standart.log')
 soap_hendler.setFormatter(logging.Formatter(
     '[%(asctime)s] [%(process)d] [%(levelname)s] %(name)s: %(message)s'
 ))
+
 logger.setLevel(llevel)
 logger.addHandler(soap_hendler)
 

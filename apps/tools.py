@@ -1,6 +1,28 @@
 import datetime
-import re
 import hashlib
+import json
+import re
+from os import path
+
+
+def read_dict():
+    if path.isfile('./data/Wage.json'):
+        Wage = []
+        with open('./data/Wage.json', 'r', encoding='utf-8') as f:
+            w = json.load(f)
+        for l in w:
+            Wage.append(
+                {
+                    'start': ctod(l.get('start')),
+                    'end': ctod(l.get('end')),
+                    'wage': l.get('wage'),
+                    'wage_h': l.get('wage_h'),
+                }
+            )
+    else:
+        Wage = []
+
+    return Wage
 
 
 def check(*args):
@@ -24,7 +46,8 @@ def dtoc(o):
 
 
 def on_method_return_string(ctx):
-    ctx.out_string[0] = ctx.out_string[0].replace(b'soap11env', b'soapenv')
+    if isinstance(ctx.out_string, list):
+        ctx.out_string[0] = ctx.out_string[0].replace(b'soap11env', b'soapenv')
 
 
 class UserDefinedContext(object):
