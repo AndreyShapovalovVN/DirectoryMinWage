@@ -26,18 +26,14 @@ def read_dict():
 
 
 def check(*args):
-    h = hashlib.sha512(args[0].encode()).hexdigest()
-    return h == args[1]
+    return hashlib.sha512(args[0].encode()).hexdigest() == args[1]
 
 
 def ctod(date):
-    try:
-        dat = datetime.datetime.strptime(date, '%Y-%m-%d')
-    except Exception:
-        dat = None
-    else:
-        dat = dat.date()
-    return dat
+    if isinstance(date, str):
+        date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+
+    return date
 
 
 def dtoc(o):

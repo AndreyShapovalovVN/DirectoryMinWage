@@ -53,9 +53,9 @@ class Put(ServiceBase):
 
         if header.get('userId') != ctx.udc.config.get('USERID'):
             return 'Вам не можно вносити зміни!'
-        if not check(header.get('userId'), header.get('token')):
-            return 'Вам не можно вносити зміни!!'
         if header.get('token') != ctx.udc.config.get('TOKEN'):
+            return 'Вам не можно вносити зміни!!'
+        if not check(header.get('userId'), header.get('token')):
             return 'Вам не можно вносити зміни!!!'
 
         Wage = read_dict()
