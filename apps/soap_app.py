@@ -3,6 +3,7 @@ import logging
 from spyne import String, Date, Decimal
 from spyne import rpc, Application, ServiceBase, ComplexModel
 from spyne.protocol.json import JsonDocument
+from spyne.protocol.http import HttpRpc
 from spyne.protocol.soap import Soap11
 
 from apps.tools import *
@@ -13,11 +14,10 @@ logger = logging.getLogger('spyne')
 class MinWage(ComplexModel):
     __namespace__ = 'Directory.Minimum.Wage'
 
-    DateWage = Date(doc='Дата на яку потрібна мінімальна заробітна плата')
-    WageMonth = Decimal(doc='Мінімальна заробітна плата')
-    WageHour = Decimal(doc='Мінімальна погодина заробітна плата')
-    WageDateBegin = Date(doc='Дата впровадження')
-    WageDateEnd = Date(doc='Дата закінчення')
+    MinWageMonth = Decimal(doc='Мінімальна заробітна плата')
+    MinWageHour = Decimal(doc='Мінімальна погодина заробітна плата')
+    MinWageDateBegin = Date(doc='Дата впровадження')
+    MinWageDateEnd = Date(doc='Дата закінчення')
 
 
 class Get(ServiceBase):
@@ -30,14 +30,13 @@ class Get(ServiceBase):
     def GetMinWage(ctx, DateWage):
         Wage = read_dict()
         mw = MinWage()
-        mw.DateWage = DateWage
         for w in Wage:
             end = w.get('end') or datetime.date(2999, 12, 31)
             if w.get('start') <= DateWage <= end:
-                mw.WageMonth = w.get('wage')
-                mw.WageHour = w.get('wage_h')
-                mw.WageDateBegin = w.get('start')
-                mw.WageDateEnd = w.get('end')
+                mw.MinWageMonth = w.get('wage')
+                mw.MinWageHour = w.get('wage_h')
+                mw.MinWageDateBegin = w.get('start')
+                mw.MinWageDateEnd = w.get('end')
         return mw
 
 
@@ -129,7 +128,7 @@ def rest_get(flask_app):
         [Get],
         tns='Directory.Minimum.Wage',
         name='GetMinWage',
-        in_protocol=JsonDocument(validator='soft'),
+        in_protocol=HttpRpc(validator='soft'),
         out_protocol=JsonDocument(),
     )
 

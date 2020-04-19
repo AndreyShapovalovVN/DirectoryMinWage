@@ -16,7 +16,7 @@ my_apps['/soapPutMinWage'] = WsgiApplication(
     soap_put(app))
 my_apps['/soapGetMinWage'] = WsgiApplication(
     soap_get(app))
-my_apps['/jsonGetMinWage'] = WsgiApplication(
+my_apps['/api'] = WsgiApplication(
     rest_get(app))
 
 app.wsgi_app = DispatcherMiddleware(app.wsgi_app, my_apps)

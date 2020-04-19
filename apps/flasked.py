@@ -6,11 +6,9 @@ app.config.from_object('settings')
 
 page_home = 'Доступны следующие сервисы:'
 page_home += '<br>http://{h}:{p}/soapPutMinWage/?wsdl\n'
-page_home += '<br>http://{h}:{p}/soapGetMinWage/?wsdl\n <br>'
-page_home += '<br>http://{h}:{p}/jsonGetMinWage\n'
-page_home += '<br>metod POST:\n'
+page_home += '<br>http://{h}:{p}/soapGetMinWage/?wsdl\n'
+page_home += '<br>http://{h}:{p}/api/GetMinWage?DateWage=2002-04-16\n'
 page_home = page_home.format(h='0.0.0.0', p=app.config.get('APP_PORT'))
-page_home += '<br>{"GetMinWage": {"DateWage": "2002-04-16"}}\n'
 
 
 
