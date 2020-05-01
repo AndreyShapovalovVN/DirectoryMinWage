@@ -2,7 +2,7 @@
 import logging
 
 from spyne.server.wsgi import WsgiApplication
-from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from apps.flasked import app
 from apps.soap_app import soap_put, soap_get, rest_get, logger
@@ -12,9 +12,9 @@ import gunicorn
 
 my_apps = {}
 
-my_apps['/soapPutMinWage'] = WsgiApplication(
+my_apps['/PutWage'] = WsgiApplication(
     soap_put(app))
-my_apps['/soapGetMinWage'] = WsgiApplication(
+my_apps['/GetWage'] = WsgiApplication(
     soap_get(app))
 my_apps['/api'] = WsgiApplication(
     rest_get(app))

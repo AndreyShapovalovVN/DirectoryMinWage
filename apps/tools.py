@@ -4,21 +4,22 @@ import json
 import re
 from os import path
 
+from spyne import Date, Float, ComplexModel
 
-def read_dict():
-    if path.isfile('./data/Wage.json'):
+
+def read_dict(data):
+    if path.isfile(path.join('./data', data)):
         Wage = []
-        with open('./data/Wage.json', 'r', encoding='utf-8') as f:
+        with open(path.join('./data', data), 'r', encoding='utf-8') as f:
             w = json.load(f)
         for l in w:
-            Wage.append(
+            l.update(
                 {
                     'start': ctod(l.get('start')),
                     'end': ctod(l.get('end')),
-                    'wage': l.get('wage'),
-                    'wage_h': l.get('wage_h'),
                 }
             )
+            Wage.append(l)
     else:
         Wage = []
 
@@ -61,3 +62,50 @@ def Header(element):
             subdict = Header(elem)
             ret[re.sub('{.*}', '', elem.tag)] = subdict
     return ret
+
+class MW(ComplexModel):
+    __namespace__ = 'Directory.Minimum.Wage'
+    MinWageMonth = Float(
+        min_occurs=1,
+        doc='Мінімальна заробітна плата'
+    )
+    MinWageHour = Float(
+        min_occurs=1,
+        doc='Мінімальна погодина заробітна плата'
+    )
+    MinWageDateBegin = Date(
+        min_occurs=1,
+        doc='Дата впровадження, формат (YYYY-MM-DD)'
+    )
+    MinWageDateEnd = Date(
+        nullable=True,
+        doc='Дата закінчення, формат (YYYY-MM-DD)'
+    )
+
+
+class LW(ComplexModel):
+    __namespace__ = 'Directory.Minimum.Living'
+
+    LivingWage = Float(
+        min_occurs=1
+    )
+    LivingWage6 = Float(
+        min_occurs=1
+    )
+    LivingWage18 = Float(
+        min_occurs=1
+    )
+    LivingWageEmployable = Float(
+        min_occurs=1
+    )
+    LivingWageInvalid = Float(
+        min_occurs=1
+    )
+    MinWageDateBegin = Date(
+        min_occurs=1,
+        doc='Дата впровадження, формат (YYYY-MM-DD)'
+    )
+    MinWageDateEnd = Date(
+        min_occurs=0,
+        nullable=True,
+        doc='Дата закінчення, формат (YYYY-MM-DD)')
