@@ -5,6 +5,7 @@ import re
 from os import path
 
 from spyne import Date, Float, ComplexModel
+from spyne import ServiceBase
 
 
 def read_dict(data):
@@ -45,6 +46,16 @@ def dtoc(o):
 def on_method_return_string(ctx):
     if isinstance(ctx.out_string, list):
         ctx.out_string[0] = ctx.out_string[0].replace(b'soap11env', b'soapenv')
+        ctx.out_string[0] = ctx.out_string[0].replace(b'soap12env', b'soapenv')
+
+
+class XRoad(ServiceBase):
+    pass
+
+
+XRoad.event_manager.add_listener(
+    'method_return_string', on_method_return_string
+)
 
 
 class UserDefinedContext(object):

@@ -1,6 +1,6 @@
 import logging
 
-from spyne import rpc, Application, ServiceBase, String
+from spyne import rpc, Application, String
 from spyne.protocol.http import HttpRpc
 from spyne.protocol.json import JsonDocument
 from spyne.protocol.soap import Soap11
@@ -13,7 +13,7 @@ MinWage = MW.customize(min_occurs=1)
 LWage = LW.customize(min_occurs=1)
 
 
-class WageGet(ServiceBase):
+class WageGet(XRoad):
     @rpc(
         Date(
             min_occurs=1,
@@ -55,7 +55,7 @@ class WageGet(ServiceBase):
         return lw
 
 
-class WagePut(ServiceBase):
+class WagePut(XRoad):
 
     @rpc(MinWage, _returns=String())
     def putMinWage(ctx, MinWage):
@@ -138,9 +138,6 @@ def soap_put(flask_app):
     Sput.event_manager.add_listener(
         'method_call', _flask_config_context
     )
-    WagePut.event_manager.add_listener(
-        'method_return_string', on_method_return_string
-    )
 
     return Sput
 
@@ -160,9 +157,7 @@ def soap_get(flask_app):
     Sget.event_manager.add_listener(
         'method_call', _flask_config_context
     )
-    WageGet.event_manager.add_listener(
-        'method_return_string', on_method_return_string
-    )
+
     return Sget
 
 
