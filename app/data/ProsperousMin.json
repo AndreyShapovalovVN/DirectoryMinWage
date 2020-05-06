@@ -1,0 +1,452 @@
+[
+    {
+        "start": "2000-01-01",
+        "end": "2000-12-31",
+        "ProsperousMin": 270.0,
+        "ProsperousMin6": 241.0,
+        "ProsperousMin18": 297.0,
+        "ProsperousMinEmployable": 288.0,
+        "ProsperousMinInvalid": 217.0
+    },
+    {
+        "start": "2001-01-01",
+        "end": "2001-12-31",
+        "ProsperousMin": 311.0,
+        "ProsperousMin6": 276.0,
+        "ProsperousMin18": 346.0,
+        "ProsperousMinEmployable": 331.0,
+        "ProsperousMinInvalid": 249.0
+    },
+    {
+        "start": "2002-01-01",
+        "end": "2003-12-31",
+        "ProsperousMin": 342.0,
+        "ProsperousMin6": 307.0,
+        "ProsperousMin18": 384.0,
+        "ProsperousMinEmployable": 365.0,
+        "ProsperousMinInvalid": 268.0
+    },
+    {
+        "start": "2004-01-01",
+        "end": "2004-12-31",
+        "ProsperousMin": 362.0,
+        "ProsperousMin6": 324.0,
+        "ProsperousMin18": 405.0,
+        "ProsperousMinEmployable": 387.0,
+        "ProsperousMinInvalid": 285.0
+    },
+    {
+        "start": "2005-01-01",
+        "end": "2005-12-31",
+        "ProsperousMin": 423.0,
+        "ProsperousMin6": 376.0,
+        "ProsperousMin18": 468.0,
+        "ProsperousMinEmployable": 453.0,
+        "ProsperousMinInvalid": 332.0
+    },
+    {
+        "start": "2006-01-01",
+        "end": "2006-03-31",
+        "ProsperousMin": 453.0,
+        "ProsperousMin6": 400.0,
+        "ProsperousMin18": 514.0,
+        "ProsperousMinEmployable": 483.0,
+        "ProsperousMinInvalid": 350.0
+    },
+    {
+        "start": "2006-04-01",
+        "end": "2006-09-30",
+        "ProsperousMin": 465.0,
+        "ProsperousMin6": 410.0,
+        "ProsperousMin18": 527.0,
+        "ProsperousMinEmployable": 496.0,
+        "ProsperousMinInvalid": 359.0
+    },
+    {
+        "start": "2006-10-01",
+        "end": "2006-12-31",
+        "ProsperousMin": 472.0,
+        "ProsperousMin6": 418.0,
+        "ProsperousMin18": 536.0,
+        "ProsperousMinEmployable": 505.0,
+        "ProsperousMinInvalid": 366.0
+    },
+    {
+        "start": "2007-01-01",
+        "end": "2007-03-31",
+        "ProsperousMin": 492.0,
+        "ProsperousMin6": 434.0,
+        "ProsperousMin18": 558.0,
+        "ProsperousMinEmployable": 525.0,
+        "ProsperousMinInvalid": 380.0
+    },
+    {
+        "start": "2007-04-01",
+        "end": "2007-09-30",
+        "ProsperousMin": 525.0,
+        "ProsperousMin6": 463.0,
+        "ProsperousMin18": 595.0,
+        "ProsperousMinEmployable": 561.0,
+        "ProsperousMinInvalid": 406.0
+    },
+    {
+        "start": "2007-10-01",
+        "end": "2007-12-31",
+        "ProsperousMin": 532.0,
+        "ProsperousMin6": 470.0,
+        "ProsperousMin18": 604.0,
+        "ProsperousMinEmployable": 568.0,
+        "ProsperousMinInvalid": 411.0
+    },
+    {
+        "start": "2008-01-01",
+        "end": "2008-03-31",
+        "ProsperousMin": 592.0,
+        "ProsperousMin6": 526.0,
+        "ProsperousMin18": 663.0,
+        "ProsperousMinEmployable": 633.0,
+        "ProsperousMinInvalid": 470.0
+    },
+    {
+        "start": "2008-04-01",
+        "end": "2008-06-30",
+        "ProsperousMin": 605.0,
+        "ProsperousMin6": 538.0,
+        "ProsperousMin18": 678.0,
+        "ProsperousMinEmployable": 647.0,
+        "ProsperousMinInvalid": 481.0
+    },
+    {
+        "start": "2008-07-01",
+        "end": "2008-09-30",
+        "ProsperousMin": 607.0,
+        "ProsperousMin6": 540.0,
+        "ProsperousMin18": 680.0,
+        "ProsperousMinEmployable": 649.0,
+        "ProsperousMinInvalid": 482.0
+    },
+    {
+        "start": "2008-10-01",
+        "end": "2009-10-31",
+        "ProsperousMin": 626.0,
+        "ProsperousMin6": 557.0,
+        "ProsperousMin18": 701.0,
+        "ProsperousMinEmployable": 669.0,
+        "ProsperousMinInvalid": 498.0
+    },
+    {
+        "start": "2009-11-01",
+        "end": "2009-12-31",
+        "ProsperousMin": 701.0,
+        "ProsperousMin6": 632.0,
+        "ProsperousMin18": 776.0,
+        "ProsperousMinEmployable": 744.0,
+        "ProsperousMinInvalid": 573.0
+    },
+    {
+        "start": "2010-01-01",
+        "end": "2010-03-31",
+        "ProsperousMin": 825.0,
+        "ProsperousMin6": 755.0,
+        "ProsperousMin18": 901.0,
+        "ProsperousMinEmployable": 869.0,
+        "ProsperousMinInvalid": 695.0
+    },
+    {
+        "start": "2010-04-01",
+        "end": "2010-06-30",
+        "ProsperousMin": 839.0,
+        "ProsperousMin6": 767.0,
+        "ProsperousMin18": 917.0,
+        "ProsperousMinEmployable": 884.0,
+        "ProsperousMinInvalid": 706.0
+    },
+    {
+        "start": "2010-07-01",
+        "end": "2010-09-30",
+        "ProsperousMin": 843.0,
+        "ProsperousMin6": 771.0,
+        "ProsperousMin18": 921.0,
+        "ProsperousMinEmployable": 888.0,
+        "ProsperousMinInvalid": 709.0
+    },
+    {
+        "start": "2010-10-01",
+        "end": "2010-11-30",
+        "ProsperousMin": 861.0,
+        "ProsperousMin6": 787.0,
+        "ProsperousMin18": 941.0,
+        "ProsperousMinEmployable": 907.0,
+        "ProsperousMinInvalid": 723.0
+    },
+    {
+        "start": "2010-12-01",
+        "end": "2010-12-31",
+        "ProsperousMin": 875.0,
+        "ProsperousMin6": 799.0,
+        "ProsperousMin18": 957.0,
+        "ProsperousMinEmployable": 922.0,
+        "ProsperousMinInvalid": 734.0
+    },
+    {
+        "start": "2011-01-01",
+        "end": "2011-03-31",
+        "ProsperousMin": 894.0,
+        "ProsperousMin6": 816.0,
+        "ProsperousMin18": 977.0,
+        "ProsperousMinEmployable": 941.0,
+        "ProsperousMinInvalid": 750.0
+    },
+    {
+        "start": "2011-04-01",
+        "end": "2011-09-30",
+        "ProsperousMin": 911.0,
+        "ProsperousMin6": 832.0,
+        "ProsperousMin18": 997.0,
+        "ProsperousMinEmployable": 960.0,
+        "ProsperousMinInvalid": 764.0
+    },
+    {
+        "start": "2011-10-01",
+        "end": "2011-11-30",
+        "ProsperousMin": 934.0,
+        "ProsperousMin6": 853.0,
+        "ProsperousMin18": 1022.0,
+        "ProsperousMinEmployable": 985.0,
+        "ProsperousMinInvalid": 784.0
+    },
+    {
+        "start": "2011-12-01",
+        "end": "2011-12-31",
+        "ProsperousMin": 953.0,
+        "ProsperousMin6": 870.0,
+        "ProsperousMin18": 1042.0,
+        "ProsperousMinEmployable": 1004.0,
+        "ProsperousMinInvalid": 800.0
+    },
+    {
+        "start": "2012-01-01",
+        "end": "2012-03-31",
+        "ProsperousMin": 1017.0,
+        "ProsperousMin6": 893.0,
+        "ProsperousMin18": 1112.0,
+        "ProsperousMinEmployable": 1073.0,
+        "ProsperousMinInvalid": 822.0
+    },
+    {
+        "start": "2012-04-01",
+        "end": "2012-06-30",
+        "ProsperousMin": 1037.0,
+        "ProsperousMin6": 911.0,
+        "ProsperousMin18": 1134.0,
+        "ProsperousMinEmployable": 1094.0,
+        "ProsperousMinInvalid": 838.0
+    },
+    {
+        "start": "2012-07-01",
+        "end": "2012-09-30",
+        "ProsperousMin": 1044.0,
+        "ProsperousMin6": 917.0,
+        "ProsperousMin18": 1144.0,
+        "ProsperousMinEmployable": 1102.0,
+        "ProsperousMinInvalid": 844.0
+    },
+    {
+        "start": "2012-10-01",
+        "end": "2012-11-30",
+        "ProsperousMin": 1060.0,
+        "ProsperousMin6": 930.0,
+        "ProsperousMin18": 1161.0,
+        "ProsperousMinEmployable": 1118.0,
+        "ProsperousMinInvalid": 856.0
+    },
+    {
+        "start": "2012-12-01",
+        "end": "2012-12-31",
+        "ProsperousMin": 1095.0,
+        "ProsperousMin6": 961.0,
+        "ProsperousMin18": 1197.0,
+        "ProsperousMinEmployable": 1134.0,
+        "ProsperousMinInvalid": 884.0
+    },
+    {
+        "start": "2013-01-01",
+        "end": "2013-11-30",
+        "ProsperousMin": 1108.0,
+        "ProsperousMin6": 972.0,
+        "ProsperousMin18": 1210.0,
+        "ProsperousMinEmployable": 1147.0,
+        "ProsperousMinInvalid": 894.0
+    },
+    {
+        "start": "2013-12-01",
+        "end": "2013-12-31",
+        "ProsperousMin": 1176.0,
+        "ProsperousMin6": 1032.0,
+        "ProsperousMin18": 1286.0,
+        "ProsperousMinEmployable": 1218.0,
+        "ProsperousMinInvalid": 949.0
+    },
+    {
+        "start": "2014-01-01",
+        "end": "2014-12-31",
+        "ProsperousMin": 1176.0,
+        "ProsperousMin6": 1032.0,
+        "ProsperousMin18": 1286.0,
+        "ProsperousMinEmployable": 1218.0,
+        "ProsperousMinInvalid": 949.0
+    },
+    {
+        "start": "2015-01-01",
+        "end": "2015-08-31",
+        "ProsperousMin": 1176.0,
+        "ProsperousMin6": 1032.0,
+        "ProsperousMin18": 1286.0,
+        "ProsperousMinEmployable": 1218.0,
+        "ProsperousMinInvalid": 949.0
+    },
+    {
+        "start": "2015-09-01",
+        "end": "2015-12-31",
+        "ProsperousMin": 1330.0,
+        "ProsperousMin6": 1167.0,
+        "ProsperousMin18": 1455.0,
+        "ProsperousMinEmployable": 1378.0,
+        "ProsperousMinInvalid": 1074.0
+    },
+    {
+        "start": "2016-01-01",
+        "end": "2016-04-30",
+        "ProsperousMin": 1330.0,
+        "ProsperousMin6": 1167.0,
+        "ProsperousMin18": 1455.0,
+        "ProsperousMinEmployable": 1378.0,
+        "ProsperousMinInvalid": 1074.0
+    },
+    {
+        "start": "2016-05-01",
+        "end": "2016-11-30",
+        "ProsperousMin": 1399.0,
+        "ProsperousMin6": 1228.0,
+        "ProsperousMin18": 1531.0,
+        "ProsperousMinEmployable": 1450.0,
+        "ProsperousMinInvalid": 1130.0
+    },
+    {
+        "start": "2016-12-01",
+        "end": "2016-12-31",
+        "ProsperousMin": 1544.0,
+        "ProsperousMin6": 1355.0,
+        "ProsperousMin18": 1689.0,
+        "ProsperousMinEmployable": 1600.0,
+        "ProsperousMinInvalid": 1247.0
+    },
+    {
+        "start": "2017-01-01",
+        "end": "2017-04-30",
+        "ProsperousMin": 1544.0,
+        "ProsperousMin6": 1355.0,
+        "ProsperousMin18": 1689.0,
+        "ProsperousMinEmployable": 1600.0,
+        "ProsperousMinInvalid": 1247.0
+    },
+    {
+        "start": "2017-05-01",
+        "end": "2017-11-30",
+        "ProsperousMin": 1624.0,
+        "ProsperousMin6": 1426.0,
+        "ProsperousMin18": 1777.0,
+        "ProsperousMinEmployable": 1684.0,
+        "ProsperousMinInvalid": 1312.0
+    },
+    {
+        "start": "2017-12-01",
+        "end": "2017-12-31",
+        "ProsperousMin": 1700.0,
+        "ProsperousMin6": 1492.0,
+        "ProsperousMin18": 1860.0,
+        "ProsperousMinEmployable": 1762.0,
+        "ProsperousMinInvalid": 1373.0
+    },
+    {
+        "start": "2018-01-01",
+        "end": "2018-06-30",
+        "ProsperousMin": 1700.0,
+        "ProsperousMin6": 1492.0,
+        "ProsperousMin18": 1860.0,
+        "ProsperousMinEmployable": 1762.0,
+        "ProsperousMinInvalid": 1373.0
+    },
+    {
+        "start": "2018-07-01",
+        "end": "2018-11-30",
+        "ProsperousMin": 1777.0,
+        "ProsperousMin6": 1559.0,
+        "ProsperousMin18": 1944.0,
+        "ProsperousMinEmployable": 1841.0,
+        "ProsperousMinInvalid": 1435.0
+    },
+    {
+        "start": "2018-12-01",
+        "end": "2018-12-31",
+        "ProsperousMin": 1853.0,
+        "ProsperousMin6": 1626.0,
+        "ProsperousMin18": 2027.0,
+        "ProsperousMinEmployable": 1921.0,
+        "ProsperousMinInvalid": 1497.0
+    },
+    {
+        "start": "2019-01-01",
+        "end": "2019-06-30",
+        "ProsperousMin": 1853.0,
+        "ProsperousMin6": 1626.0,
+        "ProsperousMin18": 2027.0,
+        "ProsperousMinEmployable": 1921.0,
+        "ProsperousMinInvalid": 1497.0
+    },
+    {
+        "start": "2019-07-01",
+        "end": "2019-11-30",
+        "ProsperousMin": 1936.0,
+        "ProsperousMin6": 1699.0,
+        "ProsperousMin18": 2118.0,
+        "ProsperousMinEmployable": 2007.0,
+        "ProsperousMinInvalid": 1564.0
+    },
+    {
+        "start": "2019-12-01",
+        "end": "2019-12-31",
+        "ProsperousMin": 2027.0,
+        "ProsperousMin6": 1779.0,
+        "ProsperousMin18": 2218.0,
+        "ProsperousMinEmployable": 2102.0,
+        "ProsperousMinInvalid": 1638.0
+    },
+    {
+        "start": "2020-01-01",
+        "end": "2020-06-30",
+        "ProsperousMin": 2027.0,
+        "ProsperousMin6": 1779.0,
+        "ProsperousMin18": 2218.0,
+        "ProsperousMinEmployable": 2102.0,
+        "ProsperousMinInvalid": 1638.0
+    },
+    {
+        "start": "2020-07-01",
+        "end": "2020-11-30",
+        "ProsperousMin": 2118.0,
+        "ProsperousMin6": 1859.0,
+        "ProsperousMin18": 2318.0,
+        "ProsperousMinEmployable": 2197.0,
+        "ProsperousMinInvalid": 1712.0
+    },
+    {
+        "start": "2020-12-01",
+        "end": null,
+        "ProsperousMin": 2189.0,
+        "ProsperousMin6": 1921.0,
+        "ProsperousMin18": 2395.0,
+        "ProsperousMinEmployable": 2270.0,
+        "ProsperousMinInvalid": 1769.0
+    }
+]

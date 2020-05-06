@@ -5,16 +5,14 @@ from spyne.server.wsgi import WsgiApplication
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from apps.flasked import app
-from apps.soap_app import soap_put, soap_get, rest_get, logger
+from apps.soap_app import soap_get, rest_get, logger
 
 import lxml
 import gunicorn
 
 my_apps = {}
 
-my_apps['/PutWage'] = WsgiApplication(
-    soap_put(app))
-my_apps['/GetWage'] = WsgiApplication(
+my_apps['/DictWage'] = WsgiApplication(
     soap_get(app))
 my_apps['/api'] = WsgiApplication(
     rest_get(app))
@@ -37,4 +35,4 @@ app.logger.addHandler(soap_hendler)
 logging.getLogger('spyne.protocol.xml').setLevel(llevel)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=app.config.get('APP_PORT'), threaded=True)
+    app.run(host='192.168.1.16', port=app.config.get('APP_PORT'), threaded=True)

@@ -1,9 +1,11 @@
 import logging
 
-from spyne import rpc, Application, String
+from lxml.etree import _Element
+from spyne import rpc, Application, String, ServiceBase
 from spyne.protocol.http import HttpRpc
 from spyne.protocol.json import JsonDocument
 from spyne.protocol.soap import Soap11
+from spyne.util.etreeconv import *
 
 from apps.tools import *
 
@@ -13,7 +15,7 @@ MinWage = MW.customize(min_occurs=1)
 LWage = LW.customize(min_occurs=1)
 
 
-class WageGet(XRoad):
+class DictWage(ServiceBase):
     @rpc(
         Date(
             min_occurs=1,
@@ -21,6 +23,12 @@ class WageGet(XRoad):
         ),
         _returns=MinWage)
     def GetMinWage(ctx, DateWage):
+        if isinstance(ctx.in_document, _Element):
+            header = root_etree_to_dict(
+                etree_strip_namespaces(ctx.in_document)
+            )['Envelope'][0]['Header'][0]
+            ctx.udc.logger.info('Header: %s', header)
+
         Wage = read_dict('Wage.json')
         mw = MinWage()
         for w in Wage:
@@ -38,32 +46,41 @@ class WageGet(XRoad):
             doc='Дата на яку потрібн пржитковий мінімум'
         ),
         _returns=LWage)
-    def GetLivingWage(ctx, DateWage):
-        Wage = read_dict('LivingWage.json')
-        lw = LWage()
+    def GetProsperousMin(ctx, DateWage):
+        if isinstance(ctx.in_document, _Element):
+            header = root_etree_to_dict(
+                etree_strip_namespaces(ctx.in_document)
+            )['Envelope'][0]['Header'][0]
+            ctx.udc.logger.info('Header: %s', header)
 
+        Wage = read_dict('ProsperousMin.json')
+        lw = LWage()
         for w in Wage:
             end = w.get('end') or datetime.date(2999, 12, 31)
             if w.get('start') <= DateWage <= end:
-                lw.LivingWage = w.get('LivingWage')
-                lw.LivingWage6 = w.get('LivingWage6')
-                lw.LivingWage18 = w.get('LivingWage18')
-                lw.LivingWageEmployable = w.get('LivingWageEmployable')
-                lw.LivingWageInvalid = w.get('LivingWageInvalid')
+                lw.ProsperousMin = w.get('ProsperousMin')
+                lw.ProsperousMin6 = w.get('ProsperousMin6')
+                lw.ProsperousMin18 = w.get('ProsperousMin18')
+                lw.ProsperousMinEmployable = w.get('ProsperousMinEmployable')
+                lw.ProsperousMinInvalid = w.get('ProsperousMinInvalid')
                 lw.MinWageDateBegin = w.get('start')
                 lw.MinWageDateEnd = end
         return lw
 
-
-class WagePut(XRoad):
-
     @rpc(MinWage, _returns=String())
     def putMinWage(ctx, MinWage):
-        header = Header(ctx.in_document).get('Header')
+        header = None
+        if isinstance(ctx.in_document, _Element):
+            header = root_etree_to_dict(
+                etree_strip_namespaces(ctx.in_document)
+            )['Envelope'][0]['Header'][0]
+            ctx.udc.logger.info('Header: %s', header)
 
-        if header.get('userId') != ctx.udc.config.get('USERID'):
+        if not header:
+            return 'Вам не можно вносити зміни'
+        if header.get('userId')[0] != ctx.udc.config.get('USERID'):
             return 'Вам не можно вносити зміни!'
-        if header.get('token') != ctx.udc.config.get('TOKEN'):
+        if header.get('token')[0] != ctx.udc.config.get('TOKEN'):
             return 'Вам не можно вносити зміни!!'
 
         Wage = read_dict('Wage.json')
@@ -88,65 +105,53 @@ class WagePut(XRoad):
         return "OK"
 
     @rpc(LWage, _returns=String())
-    def putLivingWage(ctx, LivingWage):
-        header = Header(ctx.in_document).get('Header')
+    def putProsperousMin(ctx, ProsperousMin):
+        header = None
+        if isinstance(ctx.in_document, _Element):
+            header = root_etree_to_dict(
+                etree_strip_namespaces(ctx.in_document)
+            )['Envelope'][0]['Header'][0]
+            ctx.udc.logger.info('Header: %s', header)
 
-        if header.get('userId') != ctx.udc.config.get('USERID'):
+        if not header:
+            return 'Вам не можно вносити зміни'
+        if header.get('userId')[0] != ctx.udc.config.get('USERID'):
             return 'Вам не можно вносити зміни!'
-        if header.get('token') != ctx.udc.config.get('TOKEN'):
+        if header.get('token')[0] != ctx.udc.config.get('TOKEN'):
             return 'Вам не можно вносити зміни!!'
 
-        Wage = read_dict('LivingWage.json')
+        Wage = read_dict('ProsperousMin.json')
         for w in Wage:
             if w.get('end'):
                 continue
-            if w.get('start') > LivingWage.MinWageDateBegin:
+            if w.get('start') > ProsperousMin.MinWageDateBegin:
                 return "Дата початку не може бути меньш ніж %s" % w.get('start')
             w.update({
-                'end': LivingWage.MinWageDateBegin - datetime.timedelta(1)
+                'end': ProsperousMin.MinWageDateBegin - datetime.timedelta(1)
             })
 
         Wage.append({
-            "start": LivingWage.MinWageDateBegin,
+            "start": ProsperousMin.MinWageDateBegin,
             "end": None,
-            "LivingWage": LivingWage.LivingWage,
-            "LivingWage6": LivingWage.LivingWage6,
-            "LivingWage18": LivingWage.LivingWage18,
-            "LivingWageEmployable": LivingWage.LivingWageEmployable,
-            "LivingWageInvalid": LivingWage.LivingWageInvalid
+            "ProsperousMin": ProsperousMin.ProsperousMin,
+            "ProsperousMin6": ProsperousMin.ProsperousMin6,
+            "ProsperousMin18": ProsperousMin.ProsperousMin18,
+            "ProsperousMinEmployable": ProsperousMin.ProsperousMinEmployable,
+            "ProsperousMinInvalid": ProsperousMin.ProsperousMinInvalid
         })
 
-        with open('./data/LivingWage.json', 'w', encoding='utf-8') as f:
+        with open('./data/ProsperousMin.json', 'w', encoding='utf-8') as f:
             json.dump(Wage, f, ensure_ascii=False,
                       indent=4, default=dtoc)
 
         return "OK"
 
 
-def soap_put(flask_app):
-    Sput = Application(
-        [WagePut],
-        tns='Directory.Wage',
-        name='PutWage',
-        in_protocol=Soap11(validator='lxml'),
-        out_protocol=Soap11(),
-    )
-
-    def _flask_config_context(ctx):
-        ctx.udc = UserDefinedContext(flask_app)
-
-    Sput.event_manager.add_listener(
-        'method_call', _flask_config_context
-    )
-
-    return Sput
-
-
 def soap_get(flask_app):
     Sget = Application(
-        [WageGet],
+        [DictWage],
         tns='Directory.Minimum.Wage',
-        name='GetWage',
+        name='DictWage',
         in_protocol=Soap11(validator='lxml'),
         out_protocol=Soap11(),
     )
@@ -163,9 +168,9 @@ def soap_get(flask_app):
 
 def rest_get(flask_app):
     Sget = Application(
-        [WageGet],
+        [DictWage],
         tns='Directory.Minimum.Wage',
-        name='MinWage',
+        name='DictWage',
         in_protocol=HttpRpc(validator='soft'),
         out_protocol=JsonDocument(),
     )
