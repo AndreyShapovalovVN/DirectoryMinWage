@@ -5,6 +5,8 @@ from os import path
 
 from spyne import Date, Float, ComplexModel
 
+from settings import NAMESPACE
+
 
 def read_dict(data):
     if path.isfile(path.join('./data', data)):
@@ -48,53 +50,42 @@ class UserDefinedContext(object):
 
 
 class MW(ComplexModel):
-    __namespace__ = 'Directory.Minimum.Wage'
+    __namespace__ = '%s/MinWage' % NAMESPACE
     MinWageMonth = Float(
-        min_occurs=1,
-        doc='Мінімальна заробітна плата'
+        min_occurs=1, doc='Мінімальна заробітна плата'
     )
     MinWageHour = Float(
-        min_occurs=1,
-        doc='Мінімальна погодина заробітна плата'
+        min_occurs=1, doc='Мінімальна погодина заробітна плата'
     )
-    MinWageDateBegin = Date(
-        min_occurs=1,
-        doc='Дата впровадження, формат (YYYY-MM-DD)'
+    Begin = Date(
+        min_occurs=1, doc='Дата впровадження, формат (YYYY-MM-DD)'
     )
-    MinWageDateEnd = Date(
-        nullable=True,
-        doc='Дата закінчення, формат (YYYY-MM-DD)'
+    End = Date(
+        nullable=True, doc='Дата закінчення, формат (YYYY-MM-DD)'
     )
 
 
 class LW(ComplexModel):
-    __namespace__ = 'Directory.Minimum.Living'
+    __namespace__ = '%s/CostOfLiving' % NAMESPACE
 
-    ProsperousMin = Float(
-        min_occurs=1,
-        doc='Загальний показник',
+    CostOfLiving = Float(
+        min_occurs=1, doc='Загальний показник',
     )
-    ProsperousMin6 = Float(
-        min_occurs=1,
-        doc='Діти до 6 років',
+    CostOfLiving6 = Float(
+        min_occurs=1, doc='Діти до 6 років',
     )
-    ProsperousMin18 = Float(
-        min_occurs=1,
-        doc='Діти від 6 до 18 років',
+    CostOfLiving18 = Float(
+        min_occurs=1, doc='Діти від 6 до 18 років',
     )
-    ProsperousMinEmployable = Float(
-        min_occurs=1,
-        doc='Працездатні особи',
+    CostOfLivingEmployable = Float(
+        min_occurs=1, doc='Працездатні особи',
     )
-    ProsperousMinInvalid = Float(
-        min_occurs=1,
-        doc='Особи, що втратили працездатність',
+    CostOfLivingInvalid = Float(
+        min_occurs=1, doc='Особи, що втратили працездатність',
     )
-    MinWageDateBegin = Date(
-        min_occurs=1,
-        doc='Дата впровадження, формат (YYYY-MM-DD)'
+    Begin = Date(
+        min_occurs=1, doc='Дата впровадження, формат (YYYY-MM-DD)'
     )
-    MinWageDateEnd = Date(
-        min_occurs=0,
-        nullable=True,
-        doc='Дата закінчення, формат (YYYY-MM-DD)')
+    End = Date(
+        min_occurs=0, doc='Дата закінчення, формат (YYYY-MM-DD)'
+    )

@@ -6,8 +6,10 @@ app.config.from_object('settings')
 page_home = 'Доступны следующие сервисы:'
 page_home += '<br>http://{h}:{p}/DictWage/?wsdl\n'
 page_home += '<br>http://{h}:{p}/api/GetMinWage?DateWage=2002-04-16\n'
-page_home += '<br>http://{h}:{p}/api/GetProsperousMin?DateWage=2002-04-16\n'
-page_home = page_home.format(h='0.0.0.0', p=app.config.get('APP_PORT'))
+page_home += '<br>http://{h}:{p}/api/GetCostOfLiving?DateWage=2002-04-16\n'
+page_home = page_home.format(h=app.config.get('APP_HOST'),
+                             p=app.config.get('APP_PORT')
+                             )
 
 
 @app.route('/')

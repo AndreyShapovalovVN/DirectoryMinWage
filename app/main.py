@@ -35,4 +35,6 @@ app.logger.addHandler(soap_hendler)
 logging.getLogger('spyne.protocol.xml').setLevel(llevel)
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.16', port=app.config.get('APP_PORT'), threaded=True)
+    app.run(host=app.config.get('APP_HOST'),
+            port=app.config.get('APP_PORT'),
+            threaded=True)

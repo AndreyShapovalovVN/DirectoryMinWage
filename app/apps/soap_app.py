@@ -36,8 +36,8 @@ class DictWage(ServiceBase):
             if w.get('start') <= DateWage <= end:
                 mw.MinWageMonth = w.get('wage')
                 mw.MinWageHour = w.get('wage_h')
-                mw.MinWageDateBegin = w.get('start')
-                mw.MinWageDateEnd = end
+                mw.Begin = w.get('start')
+                mw.End = end
         return mw
 
     @rpc(
@@ -46,7 +46,7 @@ class DictWage(ServiceBase):
             doc='Дата на яку потрібн пржитковий мінімум'
         ),
         _returns=LWage)
-    def GetProsperousMin(ctx, DateWage):
+    def GetCostOfLiving(ctx, DateWage):
         if isinstance(ctx.in_document, _Element):
             header = root_etree_to_dict(
                 etree_strip_namespaces(ctx.in_document)
@@ -58,17 +58,17 @@ class DictWage(ServiceBase):
         for w in Wage:
             end = w.get('end') or datetime.date(2999, 12, 31)
             if w.get('start') <= DateWage <= end:
-                lw.ProsperousMin = w.get('ProsperousMin')
-                lw.ProsperousMin6 = w.get('ProsperousMin6')
-                lw.ProsperousMin18 = w.get('ProsperousMin18')
-                lw.ProsperousMinEmployable = w.get('ProsperousMinEmployable')
-                lw.ProsperousMinInvalid = w.get('ProsperousMinInvalid')
-                lw.MinWageDateBegin = w.get('start')
-                lw.MinWageDateEnd = end
+                lw.CostOfLiving = w.get('ProsperousMin')
+                lw.CostOfLiving6 = w.get('ProsperousMin6')
+                lw.CostOfLiving18 = w.get('ProsperousMin18')
+                lw.CostOfLivingEmployable = w.get('ProsperousMinEmployable')
+                lw.CostOfLivingInvalid = w.get('ProsperousMinInvalid')
+                lw.Begin = w.get('start')
+                lw.End = end
         return lw
 
     @rpc(MinWage, _returns=String())
-    def putMinWage(ctx, MinWage):
+    def PutMinWage(ctx, MinWage):
         header = None
         if isinstance(ctx.in_document, _Element):
             header = root_etree_to_dict(
@@ -105,7 +105,7 @@ class DictWage(ServiceBase):
         return "OK"
 
     @rpc(LWage, _returns=String())
-    def putProsperousMin(ctx, ProsperousMin):
+    def PutCostOfLiving(ctx, ProsperousMin):
         header = None
         if isinstance(ctx.in_document, _Element):
             header = root_etree_to_dict(
@@ -124,20 +124,20 @@ class DictWage(ServiceBase):
         for w in Wage:
             if w.get('end'):
                 continue
-            if w.get('start') > ProsperousMin.MinWageDateBegin:
+            if w.get('start') > ProsperousMin.Begin:
                 return "Дата початку не може бути меньш ніж %s" % w.get('start')
             w.update({
-                'end': ProsperousMin.MinWageDateBegin - datetime.timedelta(1)
+                'end': ProsperousMin.Begin - datetime.timedelta(1)
             })
 
         Wage.append({
-            "start": ProsperousMin.MinWageDateBegin,
+            "start": ProsperousMin.Begin,
             "end": None,
-            "ProsperousMin": ProsperousMin.ProsperousMin,
-            "ProsperousMin6": ProsperousMin.ProsperousMin6,
-            "ProsperousMin18": ProsperousMin.ProsperousMin18,
-            "ProsperousMinEmployable": ProsperousMin.ProsperousMinEmployable,
-            "ProsperousMinInvalid": ProsperousMin.ProsperousMinInvalid
+            "ProsperousMin": ProsperousMin.CostOfLiving,
+            "ProsperousMin6": ProsperousMin.CostOfLiving6,
+            "ProsperousMin18": ProsperousMin.CostOfLiving18,
+            "ProsperousMinEmployable": ProsperousMin.CostOfLivingEmployable,
+            "ProsperousMinInvalid": ProsperousMin.CostOfLivingInvalid
         })
 
         with open('./data/ProsperousMin.json', 'w', encoding='utf-8') as f:
@@ -150,7 +150,7 @@ class DictWage(ServiceBase):
 def soap_get(flask_app):
     Sget = Application(
         [DictWage],
-        tns='Directory.Minimum.Wage',
+        tns=flask_app.config.get('NAMESPACE'),
         name='DictWage',
         in_protocol=Soap11(validator='lxml'),
         out_protocol=Soap11(),
@@ -169,7 +169,7 @@ def soap_get(flask_app):
 def rest_get(flask_app):
     Sget = Application(
         [DictWage],
-        tns='Directory.Minimum.Wage',
+        tns=flask_app.config.get('NAMESPACE'),
         name='DictWage',
         in_protocol=HttpRpc(validator='soft'),
         out_protocol=JsonDocument(),
