@@ -87,17 +87,16 @@ class DictWage(ServiceBase):
         for w in Wage:
             if w.get('end'):
                 continue
-            if w.get('start') > MinWage.start:
+            if w.get('start') > MinWage.Begin:
                 return "Дата початку не може бути меньш ніж %s" % w.get('start')
-            w.update({'end': MinWage.start - datetime.timedelta(1)})
+            w.update({'end': MinWage.Begin - datetime.timedelta(1)})
 
         Wage.append({
-            'start': MinWage.start,
-            'end': None,
-            'wage': MinWage.wage,
-            'wage_h': MinWage.wage_h
+            "start": MinWage.Begin,
+            "end": None,
+            "wage": MinWage.MinWageMonth,
+            "wage_h": MinWage.MinWageHour
         })
-
         with open('./data/Wage.json', 'w', encoding='utf-8') as f:
             json.dump(Wage, f, ensure_ascii=False,
                       indent=4, default=dtoc)
